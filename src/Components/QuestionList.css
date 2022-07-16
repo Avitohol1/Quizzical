@@ -1,0 +1,46 @@
+.check-answers-button {
+    background-color: #4D5B9E;
+    font-size: 16px;
+    color: #F5F7FB;
+    border: none;
+    border-radius: 7px;
+    padding: 12px;
+    width: 165px;
+    height: 50px;
+    align-self: center;
+    margin-top: 100px;
+    cursor: pointer;
+}
+
+.start-over-button {
+    background-color: #4D5B9E;
+    font-size: 16px;
+    color: #F5F7FB;
+    border: none;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 12px;
+    width: 165px;
+    height: 50px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.points {
+    margin: 0 auto;
+    margin-top: 5em;
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+}
