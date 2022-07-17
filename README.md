@@ -1,3 +1,15 @@
+# Quizzical
+
+[](https://avitohol1.github.io/quizzical/)
+
+This is the final solo project for Bob Ziroll's React course on [Scrimba](https://scrimba.com/learn/learnreact) - *developed by me*.
+I built this using:
+- HTML5
+- CSS3 
+- JavaScript (ReactJS)
+- [Open Trivia Database API](https://opentdb.com/)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
