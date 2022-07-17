@@ -3,7 +3,7 @@ import './Footer.css'
 const Footer = () => {
     return ( 
         <footer>
-            Developed by <span className='footer_name'> Rosen Ivanov</span>
+            Developed by <a className='footer_name' href="https://github.com/Avitohol1/"> Rosen Ivanov</a>
         </footer>
      );
 }
