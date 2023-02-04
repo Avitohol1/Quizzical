@@ -19,7 +19,7 @@ function Home() {
 
   const startGame = () => {
     setIsGameStarted(true)
-    navigate("/questions")
+    navigate("/quizzical/questions")
   }
   
   const handleSelectionChange = (event) => {

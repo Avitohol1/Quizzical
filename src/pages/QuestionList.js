@@ -96,7 +96,7 @@ const QuestionList = ({gameOptions}) => {
 
     return ( 
                 <div className='questions'>
-                    <Link to="/" className="back-btn" onClick={() => setIsGameStarted(false)}>
+                    <Link to="/quizzical" className="back-btn" onClick={() => setIsGameStarted(false)}>
                         <BiLeftArrow />
                     </Link>
                     {questionElements} 
