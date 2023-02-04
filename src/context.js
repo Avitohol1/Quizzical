@@ -19,7 +19,7 @@ const GameProvider = ({children}) => {
         setIsGameOver,
         points,
         setPoints,
-        startOver
+        startOver,
     }}>
         {children}
     </GameContext.Provider>

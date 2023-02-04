@@ -3,12 +3,10 @@ import QuestionList from './QuestionList'
 import '../Components/StartPage.css'
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../Components/Footer'
 import { useGlobalContext } from '../context'
 
 function Home() {
     const {isGameStarted, setIsGameStarted} = useGlobalContext()
-    console.log(isGameStarted)
     const [gameOptions, setGameOptions] = useState({
     category: '',
     difficulty: '',
@@ -19,7 +17,7 @@ function Home() {
 
   const startGame = () => {
     setIsGameStarted(true)
-    navigate("questions")
+    navigate("/quizzical/questions")
   }
   
   const handleSelectionChange = (event) => {
@@ -108,8 +106,6 @@ function Home() {
         </div>           
 
     <button onClick={startGame} className='begin-button'>Begin Game</button>
-
-    <Footer />
   </div>
 
   return isGameStarted ? <QuestionList gameOptions = {gameOptions}/> : content

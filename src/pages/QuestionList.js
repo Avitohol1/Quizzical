@@ -5,7 +5,6 @@ import Alert from '../Components/Alert.js'
 import getQuestions from '../getQuestions.js'
 import { nanoid } from 'nanoid'
 import '../Components/QuestionList.css'
-import Footer from '../Components/Footer'
 import {BiLeftArrow} from "react-icons/bi"
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context.js'
@@ -15,7 +14,7 @@ const QuestionList = ({gameOptions}) => {
         setIsGameStarted, 
         isGameOver, 
         setIsGameOver,
-        setPoints,
+        setPoints
     } = useGlobalContext()
 
     const [questionsArray, setQuestionsArray] = useState([])
@@ -65,7 +64,10 @@ const QuestionList = ({gameOptions}) => {
                 prevQuestionsArray.map(question => ({...question, showAnswer: true }))
             ))
 
-            setAlert(null)
+            setAlert({
+                show: false,
+                msg: ""
+            })
 
             if(allQuestionsAnswered) {
                 setIsGameOver(true)
@@ -109,10 +111,9 @@ const QuestionList = ({gameOptions}) => {
                 />
     })
 
-
-    return ( 
+     return ( 
         <div className='questions'>
-            <Link to="/" className="back-btn" onClick={() => setIsGameStarted(false)}>
+            <Link to="/quizzical" className="back-btn" onClick={() => setIsGameStarted(false)}>
                 <BiLeftArrow />
             </Link>
             { questionElements } 
@@ -123,8 +124,6 @@ const QuestionList = ({gameOptions}) => {
             </button> }
 
             { alert.show && <Alert msg={alert.msg}/>}
-
-            <Footer />
         </div>
      )
 }
