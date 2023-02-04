@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Question from '../Components/Question.js'
 import GameOver from '../Components/GameOver.js'
+import Alert from '../Components/Alert.js'
 import getQuestions from '../getQuestions.js'
 import { nanoid } from 'nanoid'
 import '../Components/QuestionList.css'
@@ -18,7 +19,10 @@ const QuestionList = ({gameOptions}) => {
     } = useGlobalContext()
 
     const [questionsArray, setQuestionsArray] = useState([])
-    const [allQuestionsAnsweredElement, setAllQuestionsAnsweredElement] = useState('')
+    const [alert, setAlert] = useState({
+        show: false,
+        msg: ""
+    })
     
     let allQuestionsAnswered = questionsArray.every(question => question.selectedAnswer !== "")
     
@@ -61,19 +65,35 @@ const QuestionList = ({gameOptions}) => {
                 prevQuestionsArray.map(question => ({...question, showAnswer: true }))
             ))
 
-            setAllQuestionsAnsweredElement(null)
+            setAlert(null)
 
             if(allQuestionsAnswered) {
                 setIsGameOver(true)
+                setAlert({
+                    show: false,
+                    msg: ""
+                })
             }
             
         } else if (allQuestionsAnswered === false) {
-            setAllQuestionsAnsweredElement(prev => {
-                return <span style = {{fontSize: '18px', color: 'red'}}>Please answer all questions!</span>
-            })
-        }
-        
+            setAlert({
+                    show: true,
+                    msg: "Please answer all questions!"
+                })
+            }
     }
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setAlert({
+                ...alert,
+                show: false
+            })
+        }, 3000)
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [alert])
 
     const questionElements = questionsArray.map(question => {
         return <Question 
@@ -91,21 +111,21 @@ const QuestionList = ({gameOptions}) => {
 
 
     return ( 
-                <div className='questions'>
-                    <Link to="/quizzical" className="back-btn" onClick={() => setIsGameStarted(false)}>
-                        <BiLeftArrow />
-                    </Link>
-                    {questionElements} 
+        <div className='questions'>
+            <Link to="/" className="back-btn" onClick={() => setIsGameStarted(false)}>
+                <BiLeftArrow />
+            </Link>
+            { questionElements } 
 
-                    { isGameOver && <GameOver numberOfQuestions={questionsArray.length} /> }
-                    { !isGameOver && <button className = 'check-answers-button' onClick = {checkAnswers}>
-                                    Check Answers
-                                  </button> }
+            { isGameOver && <GameOver numberOfQuestions={questionsArray.length} /> }
+            { !isGameOver && <button className = 'check-answers-button' onClick = {checkAnswers}>
+            Check Answers
+            </button> }
 
-                    { allQuestionsAnsweredElement }
+            { alert.show && <Alert msg={alert.msg}/>}
 
-                    <Footer />
-                </div>
+            <Footer />
+        </div>
      )
 }
  

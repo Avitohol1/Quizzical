@@ -63,3 +63,13 @@
     background-color: #4D5B9E;
     color: #FFF;
 }
+
+.alert {
+    position: fixed;
+    top: 0;
+    right: 20px;
+}
+
+.alert-error {
+    color: red;
+}

@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/quizzical" element={<Home />}>
-          <Route path="/quizzical/questions" element={<QuestionList />}></Route>
+        <Route path="/" element={<Home />}>
+          <Route path="/questions" element={<QuestionList />}></Route>
         </Route>
         <Route path="*" element={<h2>Page Not Found</h2>}></Route>
       </Routes>
