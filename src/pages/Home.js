@@ -2,7 +2,7 @@ import '../App.css';
 import QuestionList from './QuestionList'
 import '../Components/StartPage.css'
 import {useState} from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
 import { useGlobalContext } from '../context'
 

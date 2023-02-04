@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Question from '../Components/Question.js'
+import GameOver from '../Components/GameOver.js'
 import getQuestions from '../getQuestions.js'
 import { nanoid } from 'nanoid'
 import '../Components/QuestionList.css'
@@ -9,11 +10,14 @@ import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context.js'
 
 const QuestionList = ({gameOptions}) => {
-    const {setIsGameStarted} = useGlobalContext()
+    const {
+        setIsGameStarted, 
+        isGameOver, 
+        setIsGameOver,
+        setPoints,
+    } = useGlobalContext()
 
     const [questionsArray, setQuestionsArray] = useState([])
-    const [isGameOver, setIsGameOver] = useState(false)
-    const [points, setPoints] = useState(0)
     const [allQuestionsAnsweredElement, setAllQuestionsAnsweredElement] = useState('')
     
     let allQuestionsAnswered = questionsArray.every(question => question.selectedAnswer !== "")
@@ -57,12 +61,10 @@ const QuestionList = ({gameOptions}) => {
                 prevQuestionsArray.map(question => ({...question, showAnswer: true }))
             ))
 
-            setAllQuestionsAnsweredElement(prev => {
-                return null
-            })
+            setAllQuestionsAnsweredElement(null)
 
             if(allQuestionsAnswered) {
-                setIsGameOver(isGameOver => true)
+                setIsGameOver(true)
             }
             
         } else if (allQuestionsAnswered === false) {
@@ -71,12 +73,6 @@ const QuestionList = ({gameOptions}) => {
             })
         }
         
-    }
-
-
-    const startOver = () => {
-        setIsGameOver(false)
-        setPoints(0)
     }
 
     const questionElements = questionsArray.map(question => {
@@ -101,22 +97,12 @@ const QuestionList = ({gameOptions}) => {
                     </Link>
                     {questionElements} 
 
-                    {   
-                        isGameOver ? <div className='game-over'>
-                                        <span className = 'points'>You scored: {points} / {questionsArray.length} points</span>  
-                                        <button className = 'start-over-button' onClick = {startOver}>
-                                            Start Over
-                                        </button>
-                                    </div>
-
-                                : <button className = 'check-answers-button' onClick = {checkAnswers}>
+                    { isGameOver && <GameOver numberOfQuestions={questionsArray.length} /> }
+                    { !isGameOver && <button className = 'check-answers-button' onClick = {checkAnswers}>
                                     Check Answers
-                                  </button>
-                    }
+                                  </button> }
 
-                    {
-                        allQuestionsAnsweredElement
-                    }
+                    { allQuestionsAnsweredElement }
 
                     <Footer />
                 </div>
