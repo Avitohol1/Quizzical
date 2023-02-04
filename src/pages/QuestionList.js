@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react'
-import Question from './Question.js'
+import Question from '../Components/Question.js'
 import getQuestions from '../getQuestions.js'
 import { nanoid } from 'nanoid'
-import './QuestionList.css'
-import Footer from './Footer'
+import '../Components/QuestionList.css'
+import Footer from '../Components/Footer'
+import {BiLeftArrow} from "react-icons/bi"
+import { Link } from 'react-router-dom'
+import { useGlobalContext } from '../context.js'
 
-const QuestionList = (props) => {
+const QuestionList = ({gameOptions}) => {
+    const {setIsGameStarted} = useGlobalContext()
 
     const [questionsArray, setQuestionsArray] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
     const [points, setPoints] = useState(0)
     const [allQuestionsAnsweredElement, setAllQuestionsAnsweredElement] = useState('')
     
-    
-
     let allQuestionsAnswered = questionsArray.every(question => question.selectedAnswer !== "")
     
-
     useEffect(() => {
         if(!isGameOver) {
-            getQuestions(props.gameOptions)
+            getQuestions(gameOptions)
             .then(questions => {
                 setQuestionsArray(questions.map (question => {
                     return {
@@ -41,7 +42,7 @@ const QuestionList = (props) => {
 						? {...question, selectedAnswer: answer }
 						: question
 				))
-			));
+			))
 	}
 
     const checkAnswers = () => {
@@ -74,7 +75,7 @@ const QuestionList = (props) => {
 
 
     const startOver = () => {
-        setIsGameOver(isGameOver => false)
+        setIsGameOver(false)
         setPoints(0)
     }
 
@@ -95,6 +96,9 @@ const QuestionList = (props) => {
 
     return ( 
                 <div className='questions'>
+                    <Link to="/" className="back-btn" onClick={() => setIsGameStarted(false)}>
+                        <BiLeftArrow />
+                    </Link>
                     {questionElements} 
 
                     {   
@@ -116,8 +120,7 @@ const QuestionList = (props) => {
 
                     <Footer />
                 </div>
-                    
-     );
+     )
 }
  
-export default QuestionList;
+export default QuestionList
