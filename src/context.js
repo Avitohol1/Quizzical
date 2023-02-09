@@ -2,8 +2,17 @@ import {createContext, useContext, useState} from "react"
 
 const GameContext = createContext()
 
+const getLocalStorageTheme = () => {
+    let theme ="light-theme"
+    if(localStorage.getItem("theme")) {
+        theme = localStorage.getItem("theme")
+    }
+    return theme
+}
+
+
 const GameProvider = ({children}) => {
-    const [theme, setTheme] = useState("light-theme")
+    const [theme, setTheme] = useState(getLocalStorageTheme())
     const [isGameStarted, setIsGameStarted] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
     const [points, setPoints] = useState(0)
