@@ -19,7 +19,6 @@
   --selected: #D6DBF5;
   --primary: #4D5B9E;
 }
-/* 28282E bg */
 
 body {
   background-color: var(--bg);
@@ -30,5 +29,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all .3s linear;
 }
 

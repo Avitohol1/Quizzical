@@ -1,15 +1,20 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { useEffect } from "react"
 import Home from './pages/Home'
 import QuestionList from "./pages/QuestionList"
 import Footer from "./Components/Footer"
+import { useGlobalContext } from "./context"
 
 function App() {
+  const {theme, changeTheme} = useGlobalContext()
 
-  document.documentElement.className = "light-theme"
+  useEffect(() => {
+    document.documentElement.className = theme
+  }, [theme])
 
   return (
     <Router>
-      <button>Theme</button>
+      <button type="button" onClick={changeTheme}>Theme</button>
       <Routes>
         <Route path="/quizzical" element={<Home />}>
           <Route path="/quizzical/questions" element={<QuestionList />}></Route>
