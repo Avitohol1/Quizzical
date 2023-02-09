@@ -25,6 +25,7 @@
 .question-container {
     border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
+    position: relative;
 }
 
 .question-text {
@@ -41,4 +42,18 @@
     background-color: var(--correct);
     color: var(--bg);
     min-width: 100px;
+}
+
+.correct-icon {
+    color: var(--correct);
+}
+
+.incorrect-icon {
+    color: var(--incorrect);
+}
+
+.correct-icon, .incorrect-icon {
+    position: absolute;
+    right: 70px;
+    top: 40%;
 }

@@ -5,7 +5,7 @@
   --text: #28282E;
   --question-text: #293264;
   --correct: #94D7A2;
-  --incorrect: #F8BCBC;
+  --incorrect: #e47a7a;
   --selected: #D6DBF5;
   --primary: #4D5B9E;
 }
@@ -15,7 +15,7 @@
   --text: #F5F7FB;
   --question-text: #e3e4ec;
   --correct: #94D7A2;
-  --incorrect: #F8BCBC;
+  --incorrect: #e47a7a;
   --selected: #D6DBF5;
   --primary: #4D5B9E;
 }
