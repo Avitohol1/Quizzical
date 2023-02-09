@@ -12,6 +12,7 @@
 
 .answer-button-selected {
     background-color: var(--selected);
+    color: #fff;
     font-size: 14px;
     border-radius: 7px;
     border: none;
@@ -32,10 +33,12 @@
 
 .question-button-incorrect { 
     background-color: var(--incorrect);
+    color: var(--bg);
     min-width: 100px;
 }
 
 .question-button-correct {
     background-color: var(--correct);
+    color: var(--bg);
     min-width: 100px;
 }
