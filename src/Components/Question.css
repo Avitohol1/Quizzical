@@ -12,7 +12,7 @@
 
 .answer-button-selected {
     background-color: var(--selected);
-    color: #fff;
+    color: var(--bg);
     font-size: 14px;
     border-radius: 7px;
     border: none;
