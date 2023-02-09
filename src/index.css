@@ -1,7 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap');
 
+.light-theme {
+  --bg: #F5F7FB;
+  --text: #28282E;
+  --question-text: #293264;
+  --correct: #94D7A2;
+  --incorrect: #F8BCBC;
+  --selected: #D6DBF5;
+  --primary: #4D5B9E;
+}
+
+.dark-theme {
+  --bg: #28282E;
+  --text: #F5F7FB;
+  --question-text: #e3e4ec;
+  --correct: #94D7A2;
+  --incorrect: #F8BCBC;
+  --selected: #D6DBF5;
+  --primary: #4D5B9E;
+}
+/* 28282E bg */
+
 body {
-  background-color: #F5F7FB;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: 'Karla', sans-serif;
   width: 100%;
   max-height: 100vh;

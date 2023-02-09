@@ -1,4 +1,3 @@
-import '../App.css';
 import QuestionList from './QuestionList'
 import '../Components/StartPage.css'
 import {useState} from 'react'
@@ -34,7 +33,7 @@ function Home() {
   const content = 
   <div className='start-page-container'>
     <div className='start-page-intro'>
-      <h1>Welcome to Quizzical!</h1>
+      <h1 className='start-page-title'>Welcome to <span className='quizzical'>Quizzical!</span></h1>
       <span>Challenge yourself and your friends with these fun trivia questions</span>
     </div>
 

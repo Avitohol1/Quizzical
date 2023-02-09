@@ -1,7 +1,8 @@
 .answer-button-default {
     font-size: 14px;
     border-radius: 7px;
-    border: 1px solid #4D5B9E;
+    border: 1px solid var(--primary);
+    color: var(--text);
     background-color: transparent;
     padding: 5px;
     margin-right: 15px;
@@ -10,7 +11,7 @@
 }
 
 .answer-button-selected {
-    background-color: #D6DBF5;
+    background-color: var(--selected);
     font-size: 14px;
     border-radius: 7px;
     border: none;
@@ -26,15 +27,15 @@
 }
 
 .question-text {
-    color: #293264;
+    color: var(--question-text);
 }
 
 .question-button-incorrect { 
-    background-color: #F8BCBC;
+    background-color: var(--incorrect);
     min-width: 100px;
 }
 
 .question-button-correct {
-    background-color: #94D7A2;
+    background-color: var(--correct);
     min-width: 100px;
 }
