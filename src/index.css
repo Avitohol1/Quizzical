@@ -30,6 +30,13 @@
   right: 70px;
 }
 
+@media screen and (max-width: 468px) {
+  .theme-btn {
+    top: 30px;
+    right: 20px;
+  }
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);

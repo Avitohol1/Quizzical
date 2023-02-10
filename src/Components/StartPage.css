@@ -1,3 +1,8 @@
+.start-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .start-page-intro {
     margin-bottom: 45px;
 }
@@ -40,4 +45,16 @@
     height: 50px;
     margin-top: 45px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .begin-button {
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .begin-button {
+        align-self: center;
+    }
 }
