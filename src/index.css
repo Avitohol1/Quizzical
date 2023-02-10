@@ -36,6 +36,11 @@
     right: 20px;
   }
 }
+
+#root {
+  position: relative;
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);
