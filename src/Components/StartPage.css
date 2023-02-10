@@ -12,6 +12,9 @@
 }
 
 .selection-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
     height: 50px;
 }
@@ -53,7 +56,11 @@
     }
 }
 
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 520px) {
+    .selection-container {
+        width: 95%;
+    }
+
     .begin-button {
         align-self: center;
     }
