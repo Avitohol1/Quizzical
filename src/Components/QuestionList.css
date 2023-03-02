@@ -1,7 +1,7 @@
 .check-answers-button {
     background-color: var(--primary);
     font-size: 18px;
-    color: var(--text);
+    color: #F5F7FB;
     border: none;
     border-radius: 7px;
     padding: 12px;
@@ -16,7 +16,7 @@
 .start-over-button {
     background-color: var(--primary);
     font-size: 16px;
-    color: var(--bg);
+    color: #F5F7FB;
     border: none;
     border-radius: 7px;
     margin-top: 10px;

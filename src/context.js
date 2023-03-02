@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react"
+import {createContext, useContext, useState, useEffect} from "react"
 
 const GameContext = createContext()
 
@@ -25,6 +25,10 @@ const GameProvider = ({children}) => {
     const changeTheme = () => {
         setTheme(oldTheme => oldTheme === "light-theme" ? "dark-theme" : "light-theme")
     }
+
+    useEffect(() => {
+        document.body.classList = theme
+    }, [theme])
 
     return <GameContext.Provider value ={{
         isGameStarted,

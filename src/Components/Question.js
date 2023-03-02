@@ -26,11 +26,11 @@ const Question = (props) => {
         ${props.selectedAnswer === props.correctAnswer ? "answer-button-selected" : "answer-button-default"}
         ${(props.showAnswer && "question-button-correct")}`
 
-    const correctAnswerElement = <button 
+    const correctAnswerElement = 
+    <button 
         key = {nanoid()}
         className = {correctAnswerClassName}
-        onClick = {() => props.handleSelectAnswer(props.id, props.correctAnswer)}
-    >
+        onClick = {() => props.handleSelectAnswer(props.id, props.correctAnswer)} >
         {decode(props.correctAnswer)}
     </button>
 

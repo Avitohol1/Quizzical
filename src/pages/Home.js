@@ -1,15 +1,15 @@
-import QuestionList from './QuestionList'
-import '../Components/StartPage.css'
-import {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useGlobalContext } from '../context'
+import QuestionList from "./QuestionList"
+import "../Components/StartPage.css"
+import {useState} from "react"
+import { useNavigate } from "react-router-dom"
+import { useGlobalContext } from "../context"
 
 function Home() {
     const {isGameStarted, setIsGameStarted} = useGlobalContext()
     const [gameOptions, setGameOptions] = useState({
-    category: '',
-    difficulty: '',
-    type: ''
+    category: "",
+    difficulty: "",
+    type: ""
   })
 
   const navigate = useNavigate()
@@ -31,17 +31,17 @@ function Home() {
   }
 
   const content = 
-  <div className='start-page-container'>
-    <div className='start-page-intro'>
-      <h1 className='start-page-title'>Welcome to <span className='quizzical'>Quizzical!</span></h1>
+  <div className="start-page-container">
+    <div className="start-page-intro">
+      <h1 className="start-page-title">Welcome to <span className="quizzical">Quizzical!</span></h1>
       <span>Challenge yourself and your friends with these fun trivia questions</span>
     </div>
 
-        <div className='selection-container'>
+        <div className="selection-container">
         <label className="label" htmlFor="category">Category:</label>
             <select
-                name='category'
-                id='category'
+                name="category"
+                id="category"
                 onChange = {handleSelectionChange}
                 value = {gameOptions.category}
             >
@@ -74,12 +74,12 @@ function Home() {
 
         </div>
         
-        <div className='selection-container'>
+        <div className="selection-container">
             <label className="label" htmlFor="difficulty">Difficulty:</label>
 
                 <select
-                  name='difficulty'
-                  id='difficulty'
+                  name="difficulty"
+                  id="difficulty"
                   onChange = {handleSelectionChange}
                   value = {gameOptions.difficulty}
                 >
@@ -90,11 +90,11 @@ function Home() {
                 </select>
         </div>
             
-        <div className='selection-container'>
+        <div className="selection-container">
             <label className="label" htmlFor="type">Type of questions:</label>
                     <select
-                      name='type'
-                      id='type'
+                      name="type"
+                      id="type"
                       onChange = {handleSelectionChange}
                       value = {gameOptions.type}
                     >
@@ -104,7 +104,7 @@ function Home() {
                     </select>
         </div>           
 
-    <button onClick={startGame} className='begin-button'>Begin Game</button>
+    <button onClick={startGame} className="begin-button">Begin Game</button>
   </div>
 
   return isGameStarted ? <QuestionList gameOptions = {gameOptions}/> : content
