@@ -10,7 +10,6 @@ function App() {
   const {theme, changeTheme} = useGlobalContext()
 
   useEffect(() => {
-    document.documentElement.className = theme
     localStorage.setItem("theme", theme)
   }, [theme])
 
