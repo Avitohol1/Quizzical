@@ -57,6 +57,10 @@
 }
 
 @media screen and (max-width: 520px) {
+    .start-page-title {
+        font-size: 30px;
+    }
+    
     .selection-container {
         width: 95%;
     }

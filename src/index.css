@@ -26,13 +26,13 @@
   color: var(--text);
   position: absolute;
   cursor: pointer;
-  top: 20px;
+  top: 27px;
   right: 70px;
 }
 
 @media screen and (max-width: 468px) {
   .theme-btn {
-    top: 30px;
+    top: 22px;
     right: 20px;
   }
 }
@@ -52,12 +52,4 @@ body {
   flex-direction: column;
   align-items: center;
   transition: all .3s linear;
-}
-
-
-
-@media screen and (max-width: 380px) {
-  body {
-    padding-top: 3rem;
-  }
 }
