@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --transition: .1s ease-in;
+  --box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
 .light-theme {
-  --bg: #F5F7FB;
+  --bg: #eff1f5;
   --text: #28282E;
   --question-text: #293264;
   --correct: #94D7A2;
   --incorrect: #e47a7a;
-  --selected: #D6DBF5;
+  --selected: #747eb0;
   --primary: #4D5B9E;
 }
 
@@ -30,6 +35,25 @@
   right: 70px;
 }
 
+.action-btn {
+  background-color: #4D5B9E;
+  box-shadow: var(--box-shadow);
+  font-size: 16px;
+  color: #F5F7FB;
+  border: none;
+  border-radius: 7px;
+  width: 140px;
+  height: 42px;
+  margin: 45px auto;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-btn:hover {
+  transition: var(--transition);
+  background-color: #293674;
+}
+
 @media screen and (max-width: 468px) {
   .theme-btn {
     top: 22px;
@@ -40,6 +64,12 @@
 #root {
   position: relative;
   height: 100vh;
+  width: 100%;
+}
+
+main {
+  width: 80vw;
+  margin: 0 auto;
 }
 
 body {
@@ -52,4 +82,22 @@ body {
   flex-direction: column;
   align-items: center;
   transition: all .3s linear;
+}
+
+@media screen and (max-width: 720px) {
+  main {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  main {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    width: 90%;
+  }
 }

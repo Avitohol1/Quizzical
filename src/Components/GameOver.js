@@ -8,7 +8,7 @@ const GameOver = ({ numberOfQuestions }) => {
             <span className="points">
                 You scored: {points} / {numberOfQuestions} points
             </span>
-            <button className="start-over-button" onClick={startOver}>
+            <button className="action-btn" onClick={startOver}>
                 Start Over
             </button>
         </div>

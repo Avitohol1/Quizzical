@@ -1,25 +1,37 @@
 .answer-button-default {
     font-size: 14px;
-    border-radius: 7px;
-    border: 1px solid var(--primary);
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
     color: var(--text);
     background-color: transparent;
-    padding: 5px;
+    padding: 8px 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    min-width: 100px;
+    transition: var(--transition);  
+}
+
+.answer-button-default:hover {
+    transform: translateY(-5%);
+    transition: var(--transition);
+}
+
+.answer-button-selected {
+    background-color: var(--selected);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color: var(--bg);
+    font-size: 14px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 20px;
     margin-right: 15px;
     cursor: pointer;
     min-width: 100px;
 }
 
-.answer-button-selected {
-    background-color: var(--selected);
-    color: var(--bg);
-    font-size: 14px;
-    border-radius: 7px;
-    border: none;
-    padding: 5px;
-    margin-right: 15px;
-    cursor: pointer;
-    min-width: 100px;
+.answers {
+    display: flex;
 }
 
 .question-container {
@@ -34,12 +46,14 @@
 
 .question-button-incorrect { 
     background-color: var(--incorrect);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     color: var(--bg);
     min-width: 100px;
 }
 
 .question-button-correct {
     background-color: var(--correct);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     color: var(--bg);
     min-width: 100px;
 }
@@ -56,4 +70,17 @@
     position: absolute;
     right: 70px;
     top: 40%;
+}
+
+@media screen and (max-width: 540px) {
+    .answers {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .answers > button {
+        width: auto;
+        margin: 0 auto;
+        height: 33px;
+    }
 }

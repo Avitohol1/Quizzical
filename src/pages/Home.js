@@ -31,12 +31,11 @@ function Home() {
     }
 
     const content = (
-        <div className="start-page-container">
+        <section className="start-page-container">
             <div className="start-page-intro">
                 <h1 className="start-page-title">
                     Welcome to <span className="quizzical">Quizzical!</span>
                 </h1>
-                <span>Challenge yourself and your friends with these fun trivia questions</span>
             </div>
 
             <div className="selection-container">
@@ -54,7 +53,9 @@ function Home() {
                     <option value="10">Entertainment: Books</option>
                     <option value="11">Entertainment: Film</option>
                     <option value="12">Entertainment: Music</option>
-                    <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                    <option value="13">
+                        Entertainment: Musicals &amp; Theatres
+                    </option>
                     <option value="14">Entertainment: Television</option>
                     <option value="15">Entertainment: Video Games</option>
                     <option value="16">Entertainment: Board Games</option>
@@ -72,8 +73,12 @@ function Home() {
                     <option value="28">Vehicles</option>
                     <option value="29">Entertainment: Comics</option>
                     <option value="30">Science: Gadgets</option>
-                    <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
-                    <option value="32">Entertainment: Cartoon &amp; Animations</option>
+                    <option value="31">
+                        Entertainment: Japanese Anime &amp; Manga
+                    </option>
+                    <option value="32">
+                        Entertainment: Cartoon &amp; Animations
+                    </option>
                 </select>
             </div>
 
@@ -111,10 +116,10 @@ function Home() {
                 </select>
             </div>
 
-            <button onClick={startGame} className="begin-button">
+            <button onClick={startGame} className="action-btn">
                 Begin Game
             </button>
-        </div>
+        </section>
     )
 
     return isGameStarted ? <QuestionList gameOptions={gameOptions} /> : content

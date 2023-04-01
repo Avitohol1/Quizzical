@@ -6,23 +6,25 @@ import ThemeToggler from "./Components/ThemeToggler/ThemeToggler"
 import { useGlobalContext } from "./context"
 
 function App() {
-  const { theme, changeTheme } = useGlobalContext()
+    const { theme, changeTheme } = useGlobalContext()
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme)
-  }, [theme])
+    useEffect(() => {
+        localStorage.setItem("theme", theme)
+    }, [theme])
 
-  return (
-    <Router>
-      <ThemeToggler />
-      <Routes>
-        <Route path="/quizzical" element={<Home />}>
-          <Route path="/quizzical/questions" element={<QuestionList />}></Route>
-        </Route>
-        <Route path="*" element={<h2>Page Not Found</h2>}></Route>
-      </Routes>
-    </Router>
-  )
+    return (
+        <Router>
+            <ThemeToggler />
+            <main>
+                <Routes>
+                    <Route path="/quizzical" element={<Home />}>
+                        <Route path="/quizzical/questions" element={<QuestionList />}></Route>
+                    </Route>
+                    <Route path="*" element={<h2>Page Not Found</h2>}></Route>
+                </Routes>
+            </main>
+        </Router>
+    )
 }
 
 export default App
