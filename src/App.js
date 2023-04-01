@@ -1,12 +1,12 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useEffect } from "react"
-import Home from './pages/Home'
+import Home from "./pages/Home"
 import QuestionList from "./pages/QuestionList"
 import ThemeToggler from "./Components/ThemeToggler/ThemeToggler"
 import { useGlobalContext } from "./context"
 
 function App() {
-  const {theme, changeTheme} = useGlobalContext()
+  const { theme, changeTheme } = useGlobalContext()
 
   useEffect(() => {
     localStorage.setItem("theme", theme)
@@ -25,4 +25,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

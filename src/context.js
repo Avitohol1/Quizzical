@@ -1,17 +1,16 @@
-import {createContext, useContext, useState, useEffect} from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 const GameContext = createContext()
 
 const getLocalStorageTheme = () => {
-    let theme ="light-theme"
-    if(localStorage.getItem("theme")) {
+    let theme = "light-theme"
+    if (localStorage.getItem("theme")) {
         theme = localStorage.getItem("theme")
     }
     return theme
 }
 
-
-const GameProvider = ({children}) => {
+const GameProvider = ({ children }) => {
     const [theme, setTheme] = useState(getLocalStorageTheme())
     const [isGameStarted, setIsGameStarted] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
@@ -23,30 +22,34 @@ const GameProvider = ({children}) => {
     }
 
     const changeTheme = () => {
-        setTheme(oldTheme => oldTheme === "light-theme" ? "dark-theme" : "light-theme")
+        setTheme((oldTheme) => (oldTheme === "light-theme" ? "dark-theme" : "light-theme"))
     }
 
     useEffect(() => {
         document.body.classList = theme
     }, [theme])
 
-    return <GameContext.Provider value ={{
-        isGameStarted,
-        setIsGameStarted,
-        isGameOver,
-        setIsGameOver,
-        points,
-        setPoints,
-        startOver,
-        theme,
-        changeTheme
-    }}>
-        {children}
-    </GameContext.Provider>
+    return (
+        <GameContext.Provider
+            value={{
+                isGameStarted,
+                setIsGameStarted,
+                isGameOver,
+                setIsGameOver,
+                points,
+                setPoints,
+                startOver,
+                theme,
+                changeTheme,
+            }}
+        >
+            {children}
+        </GameContext.Provider>
+    )
 }
 
 const useGlobalContext = () => {
     return useContext(GameContext)
 }
 
-export {GameContext, GameProvider, useGlobalContext}
+export { GameContext, GameProvider, useGlobalContext }
