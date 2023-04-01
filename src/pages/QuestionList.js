@@ -1,100 +1,61 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Question from "../Components/Question/Question.js"
 import GameOver from "../Components/GameOver.js"
 import Alert from "../Components/Alert.js"
-import getQuestions from "../getQuestions.js"
+import Spinner from "../Components/Spinner/Spinner.js"
 import "../QuestionList.css"
 import { BiLeftArrow } from "react-icons/bi"
 import { Link } from "react-router-dom"
 import { useGlobalContext } from "../context.js"
 
-const QuestionList = ({ gameOptions }) => {
-    const { isGameOver, endGame, stopGame, increasePoints } = useGlobalContext()
-
-    const [questionsArray, setQuestionsArray] = useState([])
-    const [alert, setAlert] = useState({
-        show: false,
-        msg: "",
-    })
-
-    let allQuestionsAnswered = questionsArray.every(
-        (question) => question.selectedAnswer !== ""
-    )
+const QuestionList = () => {
+    const {
+        isLoading,
+        isGameOver,
+        startGame,
+        handleSelectAnswer,
+        alert,
+        handleAlert,
+        endGame,
+        stopGame,
+        checkAnswers,
+        questions,
+    } = useGlobalContext()
 
     useEffect(() => {
         if (!isGameOver) {
-            getQuestions(gameOptions).then((questions) => {
-                setQuestionsArray(
-                    questions.map((question, index) => {
-                        return {
-                            ...question,
-                            id: index,
-                            selectedAnswer: "",
-                            showAnswer: false,
-                        }
-                    })
-                )
-            })
+            startGame()
         }
     }, [isGameOver])
 
-    const handleSelectAnswer = (questionId, answer) => {
-        setQuestionsArray((prevQuestionsArray) =>
-            prevQuestionsArray.map((question) =>
-                question.id === questionId
-                    ? { ...question, selectedAnswer: answer }
-                    : question
-            )
-        )
-    }
+    let allQuestionsAnswered = questions.every(
+        (question) => question.selectedAnswer !== ""
+    )
 
-    const checkAnswers = () => {
+    const submitAnswers = () => {
         if (!isGameOver && allQuestionsAnswered) {
-            questionsArray.map((question) => {
-                question.selectedAnswer === question.correct_answer &&
-                    increasePoints()
-            })
-
-            setQuestionsArray((prevQuestionsArray) =>
-                prevQuestionsArray.map((question) => ({
-                    ...question,
-                    showAnswer: true,
-                }))
-            )
-
-            setAlert({
-                show: false,
-                msg: "",
-            })
+            checkAnswers()
+            handleAlert({ msg: "", show: false })
 
             if (allQuestionsAnswered) {
                 endGame()
-                setAlert({
-                    show: false,
-                    msg: "",
-                })
+                handleAlert({ msg: "", show: false })
             }
-        } else if (allQuestionsAnswered === false) {
-            setAlert({
-                show: true,
-                msg: "Please answer all questions!",
-            })
+        } else if (!allQuestionsAnswered) {
+            handleAlert({ msg: "Please answer all questions!", show: true })
         }
     }
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setAlert({
-                ...alert,
-                show: false,
-            })
+            handleAlert({ ...alert, show: false })
         }, 3000)
         return () => {
             clearTimeout(timeout)
         }
     }, [alert])
 
-    const questionElements = questionsArray.map((question) => {
+    const questionElements = questions.map((question) => {
         const {
             id,
             incorrect_answers,
@@ -112,10 +73,14 @@ const QuestionList = ({ gameOptions }) => {
                 handleSelectAnswer={handleSelectAnswer}
                 selectedAnswer={selectedAnswer}
                 showAnswer={showAnswer}
-                number={`${questionsArray.indexOf(question) + 1}. `}
+                number={`${questions.indexOf(question) + 1}. `}
             />
         )
     })
+
+    if (isLoading) {
+        return <Spinner />
+    }
 
     return (
         <div className="questions">
@@ -123,11 +88,9 @@ const QuestionList = ({ gameOptions }) => {
                 <BiLeftArrow />
             </Link>
             {questionElements}
-            {isGameOver && (
-                <GameOver numberOfQuestions={questionsArray.length} />
-            )}
+            {isGameOver && <GameOver numberOfQuestions={questions.length} />}
             {!isGameOver && (
-                <button className="action-btn" onClick={checkAnswers}>
+                <button className="action-btn" onClick={submitAnswers}>
                     Check Answers
                 </button>
             )}
