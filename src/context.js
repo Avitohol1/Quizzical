@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useEffect, useReducer } from "react"
+import reducer from "./reducer"
 
 const GameContext = createContext()
 
@@ -10,36 +11,48 @@ const getLocalStorageTheme = () => {
     return theme
 }
 
+const initialState = {
+    theme: getLocalStorageTheme(),
+    isGameStarted: false,
+    isGameOver: false,
+    gameOptions: {
+        category: "",
+        difficulty: "",
+        type: "",
+    },
+    points: 0,
+    error: "",
+}
+
 const GameProvider = ({ children }) => {
-    const [theme, setTheme] = useState(getLocalStorageTheme())
-    const [isGameStarted, setIsGameStarted] = useState(false)
-    const [isGameOver, setIsGameOver] = useState(false)
-    const [points, setPoints] = useState(0)
-
-    const startOver = () => {
-        setIsGameOver(false)
-        setPoints(0)
-    }
-
-    const changeTheme = () => {
-        setTheme((oldTheme) => (oldTheme === "light-theme" ? "dark-theme" : "light-theme"))
-    }
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-        document.body.classList = theme
-    }, [theme])
+        document.body.classList = state.theme
+    }, [state.theme])
+
+    const handleSelectionChange = (event) => {
+        const { name, value } = event.target
+        dispatch({ type: "HANDLE_SELECTION", payload: { name, value } })
+    }
+
+    const startGame = () => dispatch({ type: "START_GAME" })
+    const stopGame = () => dispatch({ type: "STOP_GAME" })
+    const endGame = () => dispatch({ type: "END_GAME" })
+    const startOver = () => dispatch({ type: "START_OVER" })
+    const increasePoints = () => dispatch({ type: "INCREASE_POINTS" })
+    const changeTheme = () => dispatch({ type: "CHANGE_THEME" })
 
     return (
         <GameContext.Provider
             value={{
-                isGameStarted,
-                setIsGameStarted,
-                isGameOver,
-                setIsGameOver,
-                points,
-                setPoints,
+                ...state,
+                startGame,
+                stopGame,
+                endGame,
+                increasePoints,
+                handleSelectionChange,
                 startOver,
-                theme,
                 changeTheme,
             }}
         >

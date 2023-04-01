@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid"
 import { decode } from "html-entities"
 import "./Question.css"
-import { useGlobalContext } from "../context"
+import { useGlobalContext } from "../../context"
 import { TiTick } from "react-icons/ti"
 import { ImCross } from "react-icons/im"
 

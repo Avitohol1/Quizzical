@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react"
-import Question from "../Components/Question.js"
+import Question from "../Components/Question/Question.js"
 import GameOver from "../Components/GameOver.js"
 import Alert from "../Components/Alert.js"
 import getQuestions from "../getQuestions.js"
-import { nanoid } from "nanoid"
-import "../Components/QuestionList.css"
+import "../QuestionList.css"
 import { BiLeftArrow } from "react-icons/bi"
 import { Link } from "react-router-dom"
 import { useGlobalContext } from "../context.js"
 
 const QuestionList = ({ gameOptions }) => {
-    const { setIsGameStarted, isGameOver, setIsGameOver, setPoints } =
-        useGlobalContext()
+    const { isGameOver, endGame, stopGame, increasePoints } = useGlobalContext()
 
     const [questionsArray, setQuestionsArray] = useState([])
     const [alert, setAlert] = useState({
@@ -27,10 +25,10 @@ const QuestionList = ({ gameOptions }) => {
         if (!isGameOver) {
             getQuestions(gameOptions).then((questions) => {
                 setQuestionsArray(
-                    questions.map((question) => {
+                    questions.map((question, index) => {
                         return {
                             ...question,
-                            id: nanoid(),
+                            id: index,
                             selectedAnswer: "",
                             showAnswer: false,
                         }
@@ -53,9 +51,8 @@ const QuestionList = ({ gameOptions }) => {
     const checkAnswers = () => {
         if (!isGameOver && allQuestionsAnswered) {
             questionsArray.map((question) => {
-                question.selectedAnswer === question.correct_answer
-                    ? setPoints((points) => points + 1)
-                    : setPoints((points) => points)
+                question.selectedAnswer === question.correct_answer &&
+                    increasePoints()
             })
 
             setQuestionsArray((prevQuestionsArray) =>
@@ -71,7 +68,7 @@ const QuestionList = ({ gameOptions }) => {
             })
 
             if (allQuestionsAnswered) {
-                setIsGameOver(true)
+                endGame()
                 setAlert({
                     show: false,
                     msg: "",
@@ -122,11 +119,7 @@ const QuestionList = ({ gameOptions }) => {
 
     return (
         <div className="questions">
-            <Link
-                to="/quizzical"
-                className="back-btn"
-                onClick={() => setIsGameStarted(false)}
-            >
+            <Link to="/quizzical" className="back-btn" onClick={stopGame}>
                 <BiLeftArrow />
             </Link>
             {questionElements}

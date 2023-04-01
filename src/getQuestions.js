@@ -11,10 +11,13 @@ const getQuestions = async (gameOptions) => {
 
     const url = `https://opentdb.com/api.php?amount=5${categoryQuery}${difficultyQuery}${typeQuery}`
 
-    const response = await fetch(url)
-    const data = await response.json()
-
-    return data.results
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data.results
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 export default getQuestions
