@@ -13,7 +13,6 @@ const QuestionList = () => {
         isLoading,
         isGameOver,
         startGame,
-        handleSelectAnswer,
         alert,
         handleAlert,
         endGame,
@@ -56,13 +55,8 @@ const QuestionList = () => {
     }, [alert])
 
     const questionElements = questions.map((question) => {
-        const {
-            id,
-            incorrect_answers,
-            correct_answer,
-            selectedAnswer,
-            showAnswer,
-        } = question
+        const { id, incorrect_answers, correct_answer, selectedAnswer, showAnswer } =
+            question
         return (
             <Question
                 key={id}
@@ -70,7 +64,6 @@ const QuestionList = () => {
                 question={question.question}
                 incorrectAnswers={incorrect_answers}
                 correctAnswer={correct_answer}
-                handleSelectAnswer={handleSelectAnswer}
                 selectedAnswer={selectedAnswer}
                 showAnswer={showAnswer}
                 number={`${questions.indexOf(question) + 1}. `}
@@ -94,7 +87,6 @@ const QuestionList = () => {
                     Check Answers
                 </button>
             )}
-            {alert.show && <Alert msg={alert.msg} />}
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useReducer } from "react"
-import getQuestions from "./getQuestions"
 import reducer from "./reducer"
 
 const GameContext = createContext()
@@ -65,10 +64,22 @@ const GameProvider = ({ children }) => {
         try {
             const response = await fetch(url)
             const data = await response.json()
+            if (!response.ok) {
+                dispatch({
+                    type: "HANDLE_ALERT",
+                    payload: { msg: "Something went wrong", show: true },
+                })
+                dispatch({ type: "TOGGLE_LOADING", payload: false })
+                return
+            }
             dispatch({ type: "START_GAME", payload: data.results })
             dispatch({ type: "TOGGLE_LOADING", payload: false })
         } catch (err) {
             console.log(err)
+            dispatch({
+                type: "HANDLE_ALERT",
+                payload: { msg: err.toString(), show: true },
+            })
             dispatch({ type: "TOGGLE_LOADING", payload: false })
         }
     }

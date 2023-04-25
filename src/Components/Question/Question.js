@@ -6,7 +6,7 @@ import { TiTick } from "react-icons/ti"
 import { ImCross } from "react-icons/im"
 
 const Question = (props) => {
-    const { isGameOver } = useGlobalContext()
+    const { isGameOver, handleSelectAnswer } = useGlobalContext()
     const {
         id,
         number,
@@ -15,55 +15,48 @@ const Question = (props) => {
         correctAnswer,
         selectedAnswer,
         showAnswer,
-        handleSelectAnswer,
     } = props
 
-    const incorrectAnswerElements = props.incorrectAnswers.map(
-        (incorrectAnswer) => {
-            const incorrectAnswerClassName = `
+    const incorrectAnswerElements = incorrectAnswers.map((incorrectAnswer) => {
+        const incorrectAnswerClassName = `
             ${
-                props.selectedAnswer === incorrectAnswer
+                selectedAnswer === incorrectAnswer
                     ? "answer-button-selected"
                     : "answer-button-default"
             }
             ${
-                props.showAnswer &&
-                props.selectedAnswer === incorrectAnswer &&
+                showAnswer &&
+                selectedAnswer === incorrectAnswer &&
                 "question-button-incorrect"
             }
         `
 
-            return (
-                <button
-                    key={nanoid()}
-                    className={incorrectAnswerClassName}
-                    onClick={() =>
-                        props.handleSelectAnswer(props.id, incorrectAnswer)
-                    }
-                >
-                    {decode(incorrectAnswer)}
-                </button>
-            )
-        }
-    )
+        return (
+            <button
+                key={nanoid()}
+                className={incorrectAnswerClassName}
+                onClick={() => handleSelectAnswer(id, incorrectAnswer)}
+            >
+                {decode(incorrectAnswer)}
+            </button>
+        )
+    })
 
     const correctAnswerClassName = `
         ${
-            props.selectedAnswer === props.correctAnswer
+            selectedAnswer === correctAnswer
                 ? "answer-button-selected"
                 : "answer-button-default"
         }
-        ${props.showAnswer && "question-button-correct"}`
+        ${showAnswer && "question-button-correct"}`
 
     const correctAnswerElement = (
         <button
             key={nanoid()}
             className={correctAnswerClassName}
-            onClick={() =>
-                props.handleSelectAnswer(props.id, props.correctAnswer)
-            }
+            onClick={() => handleSelectAnswer(id, correctAnswer)}
         >
-            {decode(props.correctAnswer)}
+            {decode(correctAnswer)}
         </button>
     )
 
@@ -76,12 +69,12 @@ const Question = (props) => {
     return (
         <div className="question-container">
             <h3 className="question-text">
-                {props.number}
-                {decode(props.question)}
+                {number}
+                {decode(question)}
             </h3>
             <div className="answers">{shuffledAnswers}</div>
             {isGameOver &&
-                (props.selectedAnswer === props.correctAnswer ? (
+                (selectedAnswer === correctAnswer ? (
                     <TiTick className="correct-icon" size={30} />
                 ) : (
                     <ImCross className="incorrect-icon" size={16} />

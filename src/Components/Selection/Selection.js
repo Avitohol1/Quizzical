@@ -20,9 +20,7 @@ const Selection = () => {
                     <option value="10">Entertainment: Books</option>
                     <option value="11">Entertainment: Film</option>
                     <option value="12">Entertainment: Music</option>
-                    <option value="13">
-                        Entertainment: Musicals &amp; Theatres
-                    </option>
+                    <option value="13">Entertainment: Musicals &amp; Theatres</option>
                     <option value="14">Entertainment: Television</option>
                     <option value="15">Entertainment: Video Games</option>
                     <option value="16">Entertainment: Board Games</option>
@@ -40,12 +38,8 @@ const Selection = () => {
                     <option value="28">Vehicles</option>
                     <option value="29">Entertainment: Comics</option>
                     <option value="30">Science: Gadgets</option>
-                    <option value="31">
-                        Entertainment: Japanese Anime &amp; Manga
-                    </option>
-                    <option value="32">
-                        Entertainment: Cartoon &amp; Animations
-                    </option>
+                    <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+                    <option value="32">Entertainment: Cartoon &amp; Animations</option>
                 </select>
             </div>
 

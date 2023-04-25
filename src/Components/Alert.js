@@ -1,7 +1,10 @@
-const Alert = ({ msg }) => {
+import { useGlobalContext } from "../context"
+
+const Alert = () => {
+    const { alert } = useGlobalContext()
     return (
         <div className="alert">
-            <h2 className="alert-error">{msg}</h2>
+            <h2 className="alert-error">{alert.msg}</h2>
         </div>
     )
 }

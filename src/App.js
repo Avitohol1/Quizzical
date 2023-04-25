@@ -3,10 +3,11 @@ import { useEffect } from "react"
 import Home from "./pages/Home"
 import QuestionList from "./pages/QuestionList"
 import ThemeToggler from "./Components/ThemeToggler/ThemeToggler"
+import Alert from "./Components/Alert"
 import { useGlobalContext } from "./context"
 
 function App() {
-    const { theme } = useGlobalContext()
+    const { alert, theme } = useGlobalContext()
 
     useEffect(() => {
         localStorage.setItem("theme", theme)
@@ -25,6 +26,7 @@ function App() {
                     </Route>
                     <Route path="*" element={<h2>Page Not Found</h2>}></Route>
                 </Routes>
+                {alert.show && <Alert />}
             </main>
         </Router>
     )
