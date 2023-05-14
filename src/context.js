@@ -75,7 +75,6 @@ const GameProvider = ({ children }) => {
             dispatch({ type: "START_GAME", payload: data.results })
             dispatch({ type: "TOGGLE_LOADING", payload: false })
         } catch (err) {
-            console.log(err)
             dispatch({
                 type: "HANDLE_ALERT",
                 payload: { msg: err.toString(), show: true },

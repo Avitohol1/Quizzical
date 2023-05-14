@@ -10,7 +10,6 @@ const reducer = (state, action) => {
 
     if (action.type === "HANDLE_SELECTION") {
         const { name, value } = action.payload
-        console.log(action.payload)
         return {
             ...state,
             gameOptions: {
@@ -21,7 +20,6 @@ const reducer = (state, action) => {
     }
 
     if (action.type === "START_GAME") {
-        console.log(action.payload)
         const questions = action.payload.map((question) => {
             return {
                 ...question,
